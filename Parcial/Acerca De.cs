@@ -101,5 +101,15 @@ namespace Parcial
             }
         }
         #endregion
+
+        private void AboutBox1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoPictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
