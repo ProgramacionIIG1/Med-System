@@ -34,19 +34,22 @@ namespace Parcial
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 53);
+            this.textBox1.Location = new System.Drawing.Point(83, 60);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(234, 109);
+            this.textBox1.Size = new System.Drawing.Size(903, 456);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Ayuda
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.DarkCyan;
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.textBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Ayuda";
             this.Text = "Ayuda";
             this.Load += new System.EventHandler(this.Ayuda_Load);
