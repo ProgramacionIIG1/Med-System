@@ -21,5 +21,23 @@ namespace Parcial
         {
 
         }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ayuda ayuda = new Ayuda();
+            ayuda.ShowDialog();
+         
+            
+
+        }
+
+        private void registroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

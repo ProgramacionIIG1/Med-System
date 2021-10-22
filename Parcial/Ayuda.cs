@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace Parcial
 {
-    public partial class Form1 : Form
+    public partial class Ayuda : Form
     {
-        public Form1()
+        public Ayuda()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Ayuda_Load(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.ShowDialog();
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
