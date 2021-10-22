@@ -27,5 +27,11 @@ namespace Parcial
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            registro registro = new registro();
+                registro.ShowDialog();
+        }
     }
 }

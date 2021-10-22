@@ -24,6 +24,8 @@ namespace Parcial
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AboutBox1 aboutBox1 = new AboutBox1();
+            aboutBox1.ShowDialog();
         }
 
         private void ayudaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -38,6 +40,18 @@ namespace Parcial
         private void registroToolStripMenuItem_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void doctorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Doctor doctor = new Doctor();
+                doctor.ShowDialog();
+        }
+
+        private void pacienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Paciente paciente = new Paciente();
+                paciente.ShowDialog();
         }
     }
 }
