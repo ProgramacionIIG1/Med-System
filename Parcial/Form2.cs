@@ -53,5 +53,10 @@ namespace Parcial
             Paciente paciente = new Paciente();
                 paciente.ShowDialog();
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
     }
 }
