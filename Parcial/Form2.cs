@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Parcial
 {
-    public partial class Form2 : Form 
-        
+    public partial class Form2 : Form
+
     {
         public string cadenaconxion = "Database=medsystem;Data Source=localhost;User Id=Erick;Password=1452";
+        public int usMod;
 
         public Form2()
         {
@@ -35,26 +37,26 @@ namespace Parcial
         {
             Ayuda ayuda = new Ayuda();
             ayuda.ShowDialog();
-         
-            
+
+
 
         }
 
         private void registroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void doctorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Doctor doctor = new Doctor();
-                doctor.ShowDialog();
+            doctor.ShowDialog();
         }
 
         private void pacienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Paciente paciente = new Paciente();
-                paciente.ShowDialog();
+            paciente.ShowDialog();
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -72,7 +74,7 @@ namespace Parcial
             {
                 string consulta = "select Nombre,Apellido,FechaNacimiento,Dui,Telefono,Sexo,Estado,Direccion from pacientes ";
 
-                MySqlConnection con = new MySqlConnection(cadena_conexion);
+                MySqlConnection con = new MySqlConnection(cadenaconxion);
                 MySqlDataAdapter comando = new MySqlDataAdapter(consulta, con);
                 System.Data.DataSet ds = new System.Data.DataSet();
                 comando.Fill(ds, "medsystem");
@@ -91,44 +93,86 @@ namespace Parcial
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Close();
+            MySqlConnection conn = new MySqlConnection(cadenaconxion);
+            conn.Open();
+            if (txtNombre.Text == "" & txtApellido.Text == "" & txtTelefono.Text == "" & txtDireccion.Text == "")
+            {
+                MessageBox.Show("Hay campos vacios");
+            }
+            else
+            {
+                String update = " ELETE FROM `pacientes` WHERE idPacientes ='" + usMod + "'";
+                MySqlCommand sqlCommand = new MySqlCommand(update, conn);
+                sqlCommand.Parameters.AddWithValue("@nm", txtNombre.Text);
+                sqlCommand.Parameters.AddWithValue("@Ap", txtApellido.Text);
+                sqlCommand.Parameters.AddWithValue("@Fn", dateTimePicker1.Value);
+                sqlCommand.Parameters.AddWithValue("@Tl", Convert.ToInt32(txtTelefono.Text));
+                sqlCommand.Parameters.AddWithValue("@Dir", txtDireccion.Text);
+                try
+                {
+                    sqlCommand.ExecuteNonQuery();
+                    MessageBox.Show("Cambios realizados con exito");
+                    string consulta = "select * from pacientes";
+                    MySqlConnection con = new MySqlConnection(cadenaconxion);
+                    MySqlDataAdapter comando = new MySqlDataAdapter(consulta, con);
+                    System.Data.DataSet ds = new System.Data.DataSet();
+                    comando.Fill(ds, "medsystem");
+                    dataGridView1.DataSource = ds;
+                    txtNombre.Enabled = false;
+                    dateTimePicker1.Enabled = false;
+                    txtApellido.Enabled = false;
+                    txtTelefono.Enabled = false;
+                    txtDireccion.Enabled = false;
+                    txtNombre.Clear();
+                    dateTimePicker1.Enabled = false;
+                    txtApellido.Clear();
+                    txtTelefono.Clear();
+                    txtDireccion.Clear();
+                }
+                catch (MySqlException k)
+                {
+                    MessageBox.Show(k.ToString());
+                }
+            }
+            }
+        
+
+                private void btnNew_Click(object sender, EventArgs e)
+                {
+                    txtNombre.Enabled = true;
+                    txtApellido.Enabled = true;
+                    txtTelefono.Enabled = true;
+                    dateTimePicker1.Enabled = true;
+                    comboBox1.Enabled = true;
+                    txtDireccion.Enabled = true;
+                    textBox1.Enabled = true;
+                    textBox2.Enabled = true;
+
+                    BtnAgregar.Visible = true;
+                    btnNew.Visible = false;
+
+                }
+
+                private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+                {
+
+                }
+
+                private void btnMod_Click(object sender, EventArgs e)
+                {
+                    txtNombre.Enabled = true;
+                    txtApellido.Enabled = true;
+                    txtTelefono.Enabled = true;
+                    dateTimePicker1.Enabled = true;
+                    comboBox1.Enabled = true;
+                    txtDireccion.Enabled = true;
+                    textBox1.Enabled = true;
+                    textBox2.Enabled = true;
+
+                    btnMod.Visible = false;
+                    BtnConfirmar.Visible = true;
+
+                }
+            }
         }
-
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            txtNombre.Enabled = true;
-            txtApellido.Enabled = true;
-            txtTelefono.Enabled = true;
-            dateTimePicker1.Enabled = true;
-            comboBox1.Enabled = true;
-            txtDireccion.Enabled = true;
-            textBox1.Enabled = true;
-            textBox2.Enabled = true;
-
-            BtnAgregar.Visible = true;
-            btnNew.Visible = false;
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnMod_Click(object sender, EventArgs e)
-        {
-            txtNombre.Enabled = true;
-            txtApellido.Enabled = true;
-            txtTelefono.Enabled = true;
-            dateTimePicker1.Enabled = true;
-            comboBox1.Enabled = true;
-            txtDireccion.Enabled = true;
-            textBox1.Enabled = true;
-            textBox2.Enabled = true;
-
-            btnMod.Visible = false;
-            BtnConfirmar.Visible = true;
-
-        }
-    }
-}
+    
