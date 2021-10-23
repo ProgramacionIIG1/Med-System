@@ -53,6 +53,7 @@ namespace Parcial
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.textBox1);
             this.Name = "Ayuda";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ayuda";
             this.Load += new System.EventHandler(this.Ayuda_Load);
             this.ResumeLayout(false);
