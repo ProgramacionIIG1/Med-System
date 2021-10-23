@@ -8,5 +8,13 @@ namespace Parcial
 {
     class Class1
     {
-    }
+        public int genId9()
+        {
+            Random r = new Random();
+            var Id = r.Next(10, 100000);
+
+            return Id;
+        }
 }
+}
+
